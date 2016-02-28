@@ -1,0 +1,27 @@
+extends ./layout
+
+block content
+	.container(ng-controller='UsersController' ng-init='init()')
+		.row(style='margin-top:20px;')
+			.col-md-12.text-center
+				h2=title
+		.row
+			.col-md-3
+			.col-md-6
+				.panel
+					.panel-heading
+						h3.text-center Users
+					.panel-body
+						table.table-responsive.table-condensed.table-hover
+							tr
+								th ID
+								th.text-center Name
+								th.text-center Age
+							tr(ng-repeat='user in users')
+								td {{user.id}}
+								td.text-center {{user.name}}
+								td.text-center {{user.age}}
+			.col-md-3
+
+block script
+	script(type='text/javascript' src='js/users.js')

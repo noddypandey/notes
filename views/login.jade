@@ -1,0 +1,23 @@
+extends ./layout.jade
+
+block title
+	title=title
+
+block content
+	.container
+		.row(style='margin-top:20px;')
+			.col-md-12.text-center
+				h2=title
+		.row
+			.col-md-4
+			.col-md-4
+				form(name='login_form', action='login', method='post')
+					.form-group
+						label(for='email') Email
+						input(type='text', name='email', id='email', class='form-control')
+					.form-group
+						label(for='password') Password
+						input(type='password', name='password', id='password', class='form-control')
+					.form-group
+						button(type='submit', class='form-control btn btn-primary') Submit
+			.col-md-4
