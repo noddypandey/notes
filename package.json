@@ -1,23 +1,26 @@
 {
-  "name": "todo",
-  "version": "1.0.0",
-  "description": "basic todo app",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "keywords": [
-    "todo"
-  ],
-  "author": "rohitwa",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.15.0",
-    "cookie-parser": "^1.4.1",
-    "cookie-session": "^2.0.0-alpha.1",
-    "express": "^4.13.4",
-    "jade": "^1.11.0",
-    "mongoose": "^4.4.5",
-    "node-config": "0.0.2"
-  }
+    "name": "todo",
+    "version": "1.0.0",
+    "description": "basic todo app",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "postinstall": "./node_modules/bower/bin/bower install"
+    },
+    "keywords": [
+        "todo"
+    ],
+    "author": "rohitwa",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.15.0",
+        "cookie-parser": "^1.4.1",
+        "cookie-session": "^2.0.0-alpha.1",
+        "express": "^4.13.4",
+        "jade": "^1.11.0",
+        "mongoose": "^4.4.5",
+        "node-config": "0.0.2",
+        "bower": "*"
+    },
+
 }
