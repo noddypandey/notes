@@ -40,5 +40,5 @@ app.get("/", function(req, res) {
 })
 
 app.listen(config.port, function() {
-    console.log("Server listening on port 3000");
+    console.log("Server listening on port " + config.port);
 });
