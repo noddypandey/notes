@@ -17,6 +17,7 @@
     "cookie-session": "^2.0.0-alpha.1",
     "express": "^4.13.4",
     "jade": "^1.11.0",
-    "mongoose": "^4.4.5"
+    "mongoose": "^4.4.5",
+    "node-config": "0.0.2"
   }
 }

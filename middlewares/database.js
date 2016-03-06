@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
+var config = require(__dirname + "/../config/config");
 
 var database = {};
 
 database.init = function() {
-    mongoose.connect('mongodb://localhost/todo');
+    mongoose.connect(config.dbstring);
     db = mongoose.connection;
     return db;
 }

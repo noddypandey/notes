@@ -4,7 +4,21 @@ var router = express.Router();
 var auth = require(__dirname + "/../middlewares/authentication");
 var database = require(__dirname + "/../middlewares/database");
 
+router.get('/register', [auth.redirectIfLogin], function(req, res) {
+    res.render('register', { title: "Register Page" });
+});
 
+router.post('/register', function(req, res) {
+    database.user.create({ name: req.body.name, email: req.body.email, password: req.body.password }, function(err, user) {
+        if (user) {
+            req.session.user = user;
+            req.session.isLoggedIn = true;
+            res.redirect("/dashboard");
+        } else {
+            res.redirect("/register");
+        }
+    });
+});
 
 router.get('/login', [auth.redirectIfLogin], function(req, res) {
     res.render('login', { title: "Login Page" });
