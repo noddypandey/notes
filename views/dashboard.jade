@@ -1,10 +1,40 @@
 extends ./layout.jade
 
 block title
-	title=title
+    title=title
 
 block content
-	.container
-		.row(style='margin-top:20px;')
-			.col-md-12.text-center
-				h2=title
+    .container
+        .row(style='margin-top:20px;')
+            .col-md-12.text-center
+            h2=title
+            .row
+                .col-md-6
+                    h3=user.email
+                .col-md-6
+                    a.btn.btn-sm.btn-danger(href="/logout" class="pull-right")="Logout"
+                    button(class="btn btn-sm btn-info pull-right" data-toggle="modal" data-target="#myModal")="Add Board"
+        .row
+            each board in boards
+                .col-md-4.alert.alert-success.alert-dismissible(role="alert")
+                    button(type="button" data-id=board._id class="close" data-dismiss="alert" onclick="deleteBoard(this)" aria-label="Close")
+                        span(aria-hidden="true")&times;
+                    a(href="/board/show/"+board._id data-id=board._id)=board.name
+
+        .modal.fade(tabindex="-1" role="dialog" id="myModal")
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                            span(aria-hidden="true")
+                                &times;
+                        h4(class="modal-title")="Create Board"
+                    form(action="/board/create" id="boardForm" method="post")
+                        .modal-body
+                            .row
+                                .form-group.col-md-12
+                                    label(for="boardName")
+                                    input(type="text" id="boardName" class="form-control" placeholder="Board Name" name="name")
+                        .modal-footer
+                            button(type="button" class="btn btn-default" data-dismiss="modal")="Close"
+                            button(type="submit" class="btn btn-primary")="Save Changes"

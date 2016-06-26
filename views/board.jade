@@ -1,0 +1,69 @@
+extends ./layout.jade
+
+block title
+    title=title
+
+block content
+    .container
+        .row(style='margin-top:20px;')
+            .col-md-12.text-center
+            h2=title
+            .row
+                .col-md-6
+                    h3=board.name
+                .col-md-6
+                    a.btn.btn-sm.btn-danger(href="/logout" class="pull-right")="Logout"
+                    a.btn.btn-sm.btn-info(href="/dashboard" class="pull-right")="Dashboard"
+        .row
+            .col-md-4
+                .alert.alert-success(role="alert")="Todo"
+                    button(class="btn btn-sm btn-default pull-right" data-status="Todo" data-toggle="modal" data-target="#taskModal")="Add Task"
+                    div(style="margin-bottom:10px;")
+                    .row(style="padding-top:5px;")
+                        each task in board.tasks
+                            if task.status=="Todo"
+                                .col-md-12
+                                    .alert.alert-info.alert-dismissible(role="alert")=task.name
+                                        a.btn.btn-sm.btn-info.pull-right(href="/board/"+board._id+"/update/task/"+task._id+"/Doing" style="margin-top:-4px;")="Doing"
+                                        button(type="button" data-boardid=board._id data-id=task._id class="close" data-dismiss="alert" onclick="deleteTask(this)" aria-label="Close" style="right:-80px;" )
+                                            span(aria-hidden="true")&times;
+            .col-md-4
+                .alert.alert-success(role="alert")="Doing"
+                    div(style="margin-bottom:10px;")
+                    .row(style="padding-top:5px;")
+                        each task in board.tasks
+                            if task.status=="Doing"
+                                .col-md-12
+                                    .alert.alert-info.alert-dismissible(role="alert")=task.name
+                                        a.btn.btn-sm.btn-info.pull-right(href="/board/"+board._id+"/update/task/"+task._id+"/Done" style="margin-top:-4px;")="Done" 
+                                        button(type="button" data-boardid=board._id data-id=task._id class="close" style="right:-80px;" data-dismiss="alert" onclick="deleteTask(this)" aria-label="Close")
+                                            span(aria-hidden="true")&times;
+            .col-md-4
+                .alert.alert-success(role="alert")="Done"
+                    div(style="margin-bottom:10px;")
+                    .row(style="padding-top:5px;")
+                        each task in board.tasks
+                            if task.status=="Done"
+                                .col-md-12
+                                    .alert.alert-info.alert-dismissible(role="alert")=task.name
+                                        button(type="button" data-boardid=board._id data-id=task._id class="close" data-dismiss="alert" onclick="deleteTask(this)" aria-label="Close")
+                                            span(aria-hidden="true")&times;
+                    
+        .modal.fade(tabindex="-1" role="dialog" id="taskModal")
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                            span(aria-hidden="true")
+                                &times;
+                        h4(class="modal-title")="Create Task"
+                    form(action="/board/"+board._id+"/task/create" id="boardForm" method="post")
+                        .modal-body
+                            .row
+                                input(type="hidden" name="status" value="" id="taskStatus")
+                                .form-group.col-md-12
+                                    label(for="boardName")
+                                    input(type="text" id="taskName" class="form-control" placeholder="Task Name" name="name")
+                        .modal-footer
+                            button(type="button" class="btn btn-default" data-dismiss="modal")="Close"
+                            button(type="submit" class="btn btn-primary")="Save Changes"

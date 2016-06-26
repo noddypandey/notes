@@ -22,5 +22,9 @@ block content
                         label(for='password') Password
                         input(type='password', name='password', id='password', class='form-control')
                     .form-group
-                        button(type='submit', class='form-control btn btn-primary') Submit
+                        .row
+                            .col-md-6.form-group
+                                button(type='submit', class='form-control btn btn-primary') Register
+                            .col-md-6.form-group
+                                a.btn.btn-info(href="/login" class="form-control") Login
             .col-md-4
