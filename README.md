@@ -4,6 +4,6 @@
 3. Each task can have status of Either "Todo", or "Doing" or "Done".
 
 #Live Preview
-[node-trello](https://node-trello.herokuapp.com/login)
+[node-trello](https://node-trello.herokuapp.com/logout)
 * Username : nandan@gmail.com
 * Password : nandan
